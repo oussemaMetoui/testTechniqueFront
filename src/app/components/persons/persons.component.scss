@@ -1,0 +1,51 @@
+/* Style for the form container */
+.form-container {
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  h2 {
+    margin-top: 0;
+    color: #3f51b5;
+  }
+  
+  /* Style for the form */
+  .inline-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .form-field {
+    flex: 1 1 calc(33% - 16px);
+    min-width: 200px;
+  }
+  
+  .form-actions {
+    margin-top: 16px;
+  }
+  
+  /* Error message styling */
+  .error-message {
+    color: #d32f2f;
+    font-size: 0.875rem;
+    margin-top: -8px;
+    margin-bottom: 8px;
+  }
+  .loader {
+    border: 3px solid hsla(185, 100%, 62%, 0.2);
+    border-top-color: #3cefff;
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }

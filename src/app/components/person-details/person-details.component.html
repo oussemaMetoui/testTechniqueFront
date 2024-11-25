@@ -1,0 +1,71 @@
+<div *ngIf="person">
+  <h3>Person Details</h3>
+  <p><strong>Name:</strong> {{ person.firstName }} {{ person.lastName }}</p>
+  <p><strong>Date of Birth:</strong> {{ person.age }}</p>
+
+  <h4>Jobs</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Job Title</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of person.jobs">
+        <td>{{ job.companyName }}</td>
+        <td>{{ job.jobTitle }}</td>
+        <td>{{ job.startDate | date }}</td>
+        <td>{{ job.endDate ? (job.endDate | date) : "Ongoing" }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <h3>Add New Job</h3>
+    <form [formGroup]="jobForm" (ngSubmit)="addJob()">
+      <mat-form-field>
+        <mat-label>Company Name</mat-label>
+        <input matInput formControlName="companyName" required />
+        <mat-error *ngIf="jobForm.controls['companyName'].hasError('required')">
+          Company Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Job Title</mat-label>
+        <input matInput formControlName="jobTitle" required />
+        <mat-error *ngIf="jobForm.controls['jobTitle'].hasError('required')">
+          Job Title is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Start Date</mat-label>
+        <input matInput type="date" formControlName="startDate" />
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="jobForm.controls['startDate'].hasError('required')">
+          Start Date is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>End Date</mat-label>
+        <input matInput type="date" formControlName="startDate" />
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="jobForm.invalid"
+      >
+        Add Job
+      </button>
+    </form>
+
+    <p *ngIf="error" style="color: red">{{ error }}</p>
+  </div>
+</div>
